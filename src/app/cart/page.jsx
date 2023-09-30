@@ -43,8 +43,7 @@ const Cart = () => {
 
   return (
     <div>
-      <button onClick={clearCart}>Empty Cart</button>
-      <table className="min-w-full divide-y divide-gray-500 rounded-md">
+      <table className="min-w-full divide-y divide-slate-600 rounded-md">
         <thead>
           <tr>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ">
@@ -58,11 +57,11 @@ const Cart = () => {
             </th>
           </tr>
         </thead>
-        <tbody className="bg-gray-900 divide-y divide-gray-500 ">
+        <tbody className="bg-gray-900 divide-y divide-gray-600">
           {cart &&
             cart.map((deal) => (
               <tr key={deal.dealID} className="content-center">
-                <td className="px-6 py-4 whitespace-nowrap">{deal.title}</td>
+                <td className="px-6 py-4 whitespace-nowrap ">{deal.title}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{deal.quantity}</td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   ${deal.salePrice}
@@ -80,20 +79,27 @@ const Cart = () => {
         </tbody>
       </table>
 
-      {
-        <div className="flex justify-around gap-3 mt-4 text-center">
-          <p className=" text-xl ">Total</p>
-          <p>${totalPrice}</p>
-          {cart.length > 0 && (
-            <button
-              onClick={checkout}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            >
-              Checkout
-            </button>
-          )}
+      <div className="flex justify-end gap-3 mt-4  items-center text-xl mr-4">
+        <p className="">Total:</p>
+        <p className="font-bold ">${totalPrice}</p>
+      </div>
+
+      {cart.length > 0 && (
+        <div className="flex justify-end content-center items-center">
+          <button
+            onClick={clearCart}
+            className="p-2 bg-red-600 rounded hover:bg-red-700 my-2"
+          >
+            Clear Cart
+          </button>
+          <button
+            onClick={checkout}
+            className="hover:brightness-110 hover:animate-pulse font-bold py-2 rounded-md bg-gradient-to-r from-yellow-500 via-rose-500 to-indigo-500 text-white w-[150px] flex gap-3 text-center ml-4 items-center justify-center"
+          >
+            Checkout
+          </button>
         </div>
-      }
+      )}
     </div>
   )
 }
