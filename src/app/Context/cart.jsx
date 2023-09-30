@@ -6,30 +6,30 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([])
 
   const addToCart = (product) => {
-    if (cart.find((item) => item.dealID === product.dealID)) {
-      onIncrement(product)
-      return
+    const existingProduct = cart.find((item) => item.dealID === product.dealID)
+
+    if (existingProduct) {
+      onIncrement(existingProduct)
+    } else {
+      const updatedCart = [
+        ...cart,
+        {
+          ...product,
+          quantity: 1,
+        },
+      ]
+      setCart(updatedCart)
+
+      localStorage.setItem("cart", JSON.stringify(updatedCart))
     }
-
-    setCart((prevState) => [
-      ...prevState,
-      {
-        ...product,
-        quantity: 1,
-      },
-    ])
-
-    //add cart to localStorage
-    localStorage.setItem("cart", JSON.stringify(cart))
   }
-  console.log(cart)
 
   const onIncrement = (product) => {
     const newCart = [...cart]
     const index = newCart.findIndex((p) => p.dealID === product.dealID)
     newCart[index].quantity++
     setCart(newCart)
-    //console.log(cart)
+    localStorage.setItem("cart", JSON.stringify(newCart))
   }
 
   const onDecrement = (product) => {
@@ -39,18 +39,24 @@ export const CartProvider = ({ children }) => {
       newCart[index].quantity--
     } else {
       newCart.splice(index, 1)
+      localStorage.setItem("cart", JSON.stringify(newCart))
+      if (cart.length === 0) {
+        clearCart()
+      }
     }
     setCart(newCart)
   }
 
   const clearCart = () => {
     setCart([])
+    localStorage.removeItem("cart")
   }
 
   return (
     <CartContext.Provider
       value={{
         cart,
+        setCart,
         onIncrement,
         addToCart,
         onDecrement,

@@ -4,8 +4,21 @@ import { useCart } from "../hooks/useCart"
 
 const Cart = () => {
   const [totalPrice, setTotalPrice] = useState(0)
-  const { cart, clearCart, onDecrement } = useCart()
+  const { cart, clearCart, onDecrement, setCart } = useCart()
 
+  useEffect(() => {
+    const newTotalPrice = cart.reduce((acc, deal) => {
+      return Number(acc) + Number(deal.salePrice) * Number(deal.quantity)
+    }, 0)
+    setTotalPrice(newTotalPrice.toFixed(2))
+  }, [cart])
+
+  useEffect(() => {
+    const cartStorage = JSON.parse(localStorage.getItem("cart"))
+    if (cartStorage) {
+      setCart(cartStorage)
+    }
+  }, [])
   const checkout = async () => {
     const cartProducts = cart.map((item) => {
       let nuevoElemento = {
@@ -33,13 +46,6 @@ const Cart = () => {
     console.log(data)
     window.open(data.init_point, "_blank")
   }
-
-  useEffect(() => {
-    const newTotalPrice = cart.reduce((acc, deal) => {
-      return Number(acc) + Number(deal.salePrice)
-    }, 0)
-    setTotalPrice(newTotalPrice.toFixed(2))
-  }, [cart])
 
   return (
     <div>
