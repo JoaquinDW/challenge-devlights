@@ -17,6 +17,7 @@ export default function Home() {
     if (cartFromLocalStorage) {
       setCart(cartFromLocalStorage)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -57,7 +58,7 @@ export default function Home() {
         </section>
 
         {showToast && (
-          <div className="fixed top-10 right-1  z-10 ">
+          <div className="fixed top-12 right-1  z-10">
             {showToast && (
               <div className="animate-fade-in flex items-center bg-green-500 border-l-4 border-green-700 py-2 px-3 shadow-md mb-2 max-w-xs mx-auto">
                 <div className="text-green-500 rounded-full bg-white mr-3">
@@ -82,7 +83,7 @@ export default function Home() {
         )}
 
         <div className="flex flex-col justify-center item-center">
-          <section className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ml-[130px] md:ml-0">
+          <section className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ml-[120px] md:ml-0">
             {filteredProducts.length ? (
               filteredProducts.map((deal) => (
                 <Card

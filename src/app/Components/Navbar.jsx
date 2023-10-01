@@ -7,7 +7,7 @@ import { useCart } from "../hooks/useCart"
 const Navbar = () => {
   const { cart } = useCart()
   return (
-    <section className="flex justify-between items-center my-3 ml-2 md:ml-0">
+    <section className="flex justify-between items-center my-3 ml-5 mr-5 md:mr-0">
       <Link href="/" className="text-2xl font-bold">
         Deal Store
       </Link>
