@@ -37,6 +37,7 @@ export const CartProvider = ({ children }) => {
     const index = newCart.findIndex((p) => p.dealID === product.dealID)
     if (newCart[index].quantity > 1) {
       newCart[index].quantity--
+      localStorage.setItem("cart", JSON.stringify(newCart))
     } else {
       newCart.splice(index, 1)
       localStorage.setItem("cart", JSON.stringify(newCart))
