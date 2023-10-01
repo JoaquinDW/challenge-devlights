@@ -18,6 +18,7 @@ const Cart = () => {
     if (cartStorage) {
       setCart(cartStorage)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   const checkout = async () => {
     const cartProducts = cart.map((item) => {
@@ -52,18 +53,18 @@ const Cart = () => {
       <table className="min-w-full divide-y divide-slate-600 rounded-md">
         <thead>
           <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ">
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider ">
               Product
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
               Quantity
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
               Price
             </th>
           </tr>
         </thead>
-        <tbody className="bg-gray-900 divide-y divide-gray-600">
+        <tbody className="bg-black divide-y divide-gray-500">
           {cart &&
             cart.map((deal) => (
               <tr key={deal.dealID} className="content-center">

@@ -1,6 +1,3 @@
-"use client"
-import { useState } from "react"
-import Link from "next/link"
 import { useCart } from "../hooks/useCart"
 import Image from "next/image"
 
