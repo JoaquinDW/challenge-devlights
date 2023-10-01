@@ -41,16 +41,3 @@ const Navbar = () => {
 }
 
 export default Navbar
-
-/*
- <AiOutlineShoppingCart className="text-2xl " color="#e11d48" />
-            {
-              <>
-                {cart && (
-                  <p className="text-rose-500 hidden md:block">
-                    Cart ({cart.length})
-                  </p>
-                )}
-              </>
-            }
-*/
